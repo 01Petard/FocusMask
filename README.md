@@ -8,17 +8,17 @@
 
 ## 安装与更新
 
-1. 使用 Node.js 24+、npm 11+，在项目目录执行：
+1. 使用 Node.js 24+、pnpm 10.34.6，在项目目录执行：
 
    ```sh
-   npm ci
-   npm run verify
+   pnpm install --frozen-lockfile
+   pnpm run verify
    ```
 
 2. 打开 `chrome://extensions` 或 `edge://extensions`，开启开发者模式，选择「加载已解压的扩展」，加载本项目的 `dist` 目录。
 3. 已安装版本更新后，先在扩展管理页点击 FocusMask 的「重新加载」，再刷新原有网页。**只刷新设置页不会更新后台或原有网页脚本。**配置和规则会保留。
 
-发布包通过 `npm run package` 生成，路径为 `release/focusmask-0.1.2.zip`。本项目不会自动上传商店或发布。
+发布包通过 `pnpm run package` 生成，路径为 `release/focusmask-0.1.2.zip`。本项目不会自动上传商店或发布。
 
 ## 从当前网页开始
 
@@ -67,22 +67,24 @@
 
 ## 开发与验证
 
+项目通过 `packageManager` 固定 pnpm 10.34.6，仅维护 `pnpm-lock.yaml`。
+
 ```sh
-npm run lint
-npm run typecheck
-npm test
-npm run build
-npm run verify
-npm run package
+pnpm run lint
+pnpm run typecheck
+pnpm test
+pnpm run build
+pnpm run verify
+pnpm run package
 ```
 
-`npm run dev` 只预览 Vue 页面。网页操作、权限和持久化需在加载后的扩展中验证。
+`pnpm run dev` 只预览 Vue 页面。网页操作、权限和持久化需在加载后的扩展中验证。
 
 真实浏览器测试使用独立临时配置和本地测试页：
 
 ```sh
-npx playwright install chromium
-npm run test:browser
+pnpm exec playwright install chromium
+pnpm run test:browser
 ```
 
 默认显示测试浏览器，原生授权提示可能需要人工确认。可通过 `FOCUSMASK_BROWSER_EXECUTABLE` 指定可执行文件，`FOCUSMASK_HEADED=0` 使用无界面模式。
@@ -92,7 +94,7 @@ Edge 页面测试提供预授权夹具：
 ```sh
 FOCUSMASK_TEST_LABEL=edge FOCUSMASK_PREGRANT=1 \
 FOCUSMASK_BROWSER_EXECUTABLE='/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge' \
-npm run test:browser
+pnpm run test:browser
 ```
 
 夹具只修改临时测试副本，不修改发布权限；它不能证明 Edge 原生授权、拒绝和撤销流程通过。详细证据和未验证项目见[验证记录](doc/verification.md)。

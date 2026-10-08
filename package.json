@@ -6,7 +6,7 @@
   "description": "Personal, local-only visual controls for the web",
   "engines": {
     "node": ">=24",
-    "npm": ">=11"
+    "pnpm": ">=10 <11"
   },
   "scripts": {
     "dev": "vite",
@@ -15,8 +15,8 @@
     "test": "vitest run",
     "test:browser": "node tests/browser.mjs",
     "build": "node scripts/build.mjs",
-    "verify": "npm run lint && npm run typecheck && npm test && npm run build && node scripts/validate-release.mjs",
-    "package": "npm run verify && node scripts/package-release.mjs"
+    "verify": "pnpm run lint && pnpm run typecheck && pnpm test && pnpm run build && node scripts/validate-release.mjs",
+    "package": "pnpm run verify && node scripts/package-release.mjs"
   },
   "dependencies": {
     "vue": "^3.5.43"
@@ -38,5 +38,6 @@
     "vite": "^8.3.3",
     "vitest": "^5.0.3",
     "vue-tsc": "^3.3.12"
-  }
+  },
+  "packageManager": "pnpm@10.34.6"
 }

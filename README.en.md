@@ -8,17 +8,17 @@ Current version: **0.1.2**. The interface defaults to the browser language. All 
 
 ## Install and update
 
-1. With Node.js 24+ and npm 11+, run:
+1. With Node.js 24+ and pnpm 10.34.6, run:
 
    ```sh
-   npm ci
-   npm run verify
+   pnpm install --frozen-lockfile
+   pnpm run verify
    ```
 
 2. Open `chrome://extensions` or `edge://extensions`, enable developer mode and load this project's `dist` directory as an unpacked extension.
 3. After updating, reload FocusMask in the extension manager, then refresh previously opened webpages. **Refreshing the settings page alone does not replace the background or existing content scripts.** Saved settings and rules are retained.
 
-`npm run package` creates `release/focusmask-0.1.2.zip`. It does not upload or publish to any store.
+`pnpm run package` creates `release/focusmask-0.1.2.zip`. It does not upload or publish to any store.
 
 ## Start on a webpage
 
@@ -67,22 +67,24 @@ Settings use exact Origins, including scheme, host and effective port. Persisten
 
 ## Development and verification
 
+The project pins pnpm 10.34.6 through `packageManager` and maintains only `pnpm-lock.yaml`.
+
 ```sh
-npm run lint
-npm run typecheck
-npm test
-npm run build
-npm run verify
-npm run package
+pnpm run lint
+pnpm run typecheck
+pnpm test
+pnpm run build
+pnpm run verify
+pnpm run package
 ```
 
-`npm run dev` previews Vue pages only. Page operations, permissions and persistence require a loaded extension.
+`pnpm run dev` previews Vue pages only. Page operations, permissions and persistence require a loaded extension.
 
 Browser tests use a separate temporary profile and local fixture:
 
 ```sh
-npx playwright install chromium
-npm run test:browser
+pnpm exec playwright install chromium
+pnpm run test:browser
 ```
 
 Tests show a browser by default. Native permission prompts may require manual approval. Set `FOCUSMASK_BROWSER_EXECUTABLE` to choose an executable, or `FOCUSMASK_HEADED=0` for headless execution.
@@ -92,7 +94,7 @@ Edge page tests support a pregranted fixture:
 ```sh
 FOCUSMASK_TEST_LABEL=edge FOCUSMASK_PREGRANT=1 \
 FOCUSMASK_BROWSER_EXECUTABLE='/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge' \
-npm run test:browser
+pnpm run test:browser
 ```
 
 The fixture changes only a temporary extension copy. Production permissions remain optional. It does not verify Edge's native grant, denial or revocation flows. See the [verification record](doc/verification.en.md) for evidence and remaining checks.

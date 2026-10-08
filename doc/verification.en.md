@@ -2,19 +2,21 @@
 
 [简体中文](verification.md) · **English**
 
-Verified on 2026-10-09: macOS arm64, Node.js 24.11.0, npm 11.6.1. Source, loadable `dist` and ZIP are available. Store upload and publication were not performed.
+Verified on 2026-10-09: macOS arm64, Node.js 24.11.0, pnpm 10.34.6. Source, loadable `dist` and ZIP are available. Store upload and publication were not performed.
 
 ## Results
 
 | Check | Result |
 | --- | --- |
-| ESLint, Vue TypeScript, builds and release validation | `npm run verify` passed |
+| ESLint, Vue TypeScript, builds and release validation | `pnpm run verify` passed |
 | Vitest + jsdom | 33 tests across 8 files passed |
 | Chrome for Testing 153.0.8010.12 | 26 browser checks passed |
 | Microsoft Edge 154.0.4258.62 | 26 browser checks passed |
 | ZIP compared with `dist` | All 20 files identical |
 
 Both browser runs used headless mode, separate temporary profiles and pregranted local HTTP fixtures. Required host access exists only in temporary test copies; production host permissions remain optional. Fixture permissions cannot be revoked. Website deletion checks assert removal of settings/effects and the expected revocation failure. **These results do not verify native grant, denial or revocation.** A direct optional permission request in headless mode remained pending and was not counted as a pass.
+
+After migrating the package manager, `node_modules` was rebuilt and `pnpm run verify` passed again; all 17 direct dependency versions are unchanged. Browser results in this record are retained from the previous run of the same version and were not repeated for this migration.
 
 ## Coverage
 
