@@ -1,0 +1,42 @@
+{
+  "name": "focusmask",
+  "version": "0.1.2",
+  "private": true,
+  "type": "module",
+  "description": "Personal, local-only visual controls for the web",
+  "engines": {
+    "node": ">=24",
+    "npm": ">=11"
+  },
+  "scripts": {
+    "dev": "vite",
+    "lint": "eslint .",
+    "typecheck": "vue-tsc --noEmit",
+    "test": "vitest run",
+    "test:browser": "node tests/browser.mjs",
+    "build": "node scripts/build.mjs",
+    "verify": "npm run lint && npm run typecheck && npm test && npm run build && node scripts/validate-release.mjs",
+    "package": "npm run verify && node scripts/package-release.mjs"
+  },
+  "dependencies": {
+    "vue": "^3.5.43"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/chrome": "^0.3.4",
+    "@types/node": "^26.6.4",
+    "@vitejs/plugin-vue": "^6.0.9",
+    "eslint": "^10.12.0",
+    "eslint-plugin-vue": "^10.11.1",
+    "fflate": "^0.8.3",
+    "globals": "^17.13.0",
+    "jsdom": "^29.1.1",
+    "playwright": "^1.64.0",
+    "sharp": "^0.35.5",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.71.1",
+    "vite": "^8.3.3",
+    "vitest": "^5.0.3",
+    "vue-tsc": "^3.3.12"
+  }
+}

@@ -1,0 +1,6 @@
+html[data-focusmask-privacy="on"]:not([data-focusmask-screen]) > body { filter: blur(16px) !important; pointer-events: none !important; }
+html[data-focusmask-privacy="on"] > body :is(dialog, [popover]) { filter: blur(16px) !important; pointer-events: none !important; }
+html[data-focusmask-media="on"] :is(img, video):not([data-focusmask-revealed]) { filter: blur(16px) !important; }
+[data-focusmask-clean], [data-focusmask-preview] { display: none !important; }
+/* The host is outside body so page filters cannot blur the protection controls. */
+[data-focusmask-host] { all: initial !important; position: fixed !important; inset: 0 !important; display: block !important; z-index: 2147483647 !important; pointer-events: none !important; visibility: visible !important; opacity: 1 !important; }

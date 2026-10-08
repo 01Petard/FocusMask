@@ -1,0 +1,1 @@
+html:not([data-focusmask-media="off"]) :is(img, video):not([data-focusmask-revealed]) { filter: blur(16px) !important; }

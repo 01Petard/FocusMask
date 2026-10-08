@@ -1,0 +1,4 @@
+/* Bootstrap blur is replaced by the top-layer backdrop as soon as the UI is ready. */
+html:not([data-focusmask-privacy="off"]) { --focusmask-privacy-bootstrap: 1; }
+html:not([data-focusmask-privacy="off"]):not([data-focusmask-screen]) > body { filter: blur(16px) !important; pointer-events: none !important; }
+html:not([data-focusmask-privacy="off"]) > body :is(dialog, [popover]) { filter: blur(16px) !important; pointer-events: none !important; }

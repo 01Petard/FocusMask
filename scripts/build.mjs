@@ -1,0 +1,10 @@
+import { build } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import sharp from 'sharp';
+import { mkdir } from 'node:fs/promises';
+import { resolve } from 'node:path';
+await mkdir('public/icons', { recursive: true });
+const icon = Buffer.from('<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"><rect width="128" height="128" rx="28" fill="#244d3b"/><path d="M32 38h64M32 64h42M32 90h64" stroke="#f5f4ef" stroke-width="12" stroke-linecap="round"/><circle cx="94" cy="64" r="8" fill="#a4cab0"/></svg>');
+for (const size of [16, 32, 48, 128]) await sharp(icon).resize(size).png().toFile(`public/icons/${size}.png`);
+await build({ plugins: [vue()], build: { outDir: 'dist', emptyOutDir: true, sourcemap: false, rollupOptions: { input: { popup: resolve('popup/index.html'), options: resolve('options/index.html'), background: resolve('src/background/index.ts') }, output: { entryFileNames: chunk => chunk.name === 'background' ? 'background.js' : 'assets/[name]-[hash].js' } } } });
+await build({ publicDir: false, build: { outDir: 'dist', emptyOutDir: false, sourcemap: false, lib: { entry: resolve('src/content/index.ts'), name: 'FocusMaskContent', formats: ['iife'], fileName: () => 'content.js' } } });

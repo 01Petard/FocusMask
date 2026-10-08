@@ -1,0 +1,32 @@
+import { expect, it, vi } from 'vitest';
+import { defaultSite, type SiteConfig } from '../src/shared/types';
+it('keeps one-time protection on a disabled site during state refresh, then clears it on global pause', async () => {
+  const site: SiteConfig = { ...defaultSite(location.origin), enabled: false };
+  let globalEnabled = true;
+  let receive: (message: unknown, sender: unknown, reply: (response: unknown) => void) => unknown;
+  vi.stubGlobal('chrome', { i18n: { getUILanguage: () => 'en' }, runtime: { sendMessage: async (request: { type: string }) => ({ ok: true, data: request.type === 'clean-style' ? '' : { global: { enabled: globalEnabled, schemaVersion: 1 }, site, authorized: true } }), onMessage: { addListener: (listener: typeof receive) => { receive = listener; } } } });
+  await import('../src/content/index');
+  const message = (value: unknown) => new Promise(resolve => receive(value, {}, resolve));
+  await message({ type: 'refresh-config' });
+  await message({ type: 'command', command: 'protect' });
+  expect(document.documentElement.getAttribute('data-focusmask-privacy')).toBe('on');
+  await message({ type: 'refresh-config' });
+  expect(document.documentElement.getAttribute('data-focusmask-privacy')).toBe('on');
+  await message({ type: 'command', command: 'toggle-protect' });
+  await message({ type: 'refresh-config' });
+  await message({ type: 'command', command: 'reprotect' });
+  expect(document.documentElement.getAttribute('data-focusmask-privacy')).toBe('off');
+  await message({ type: 'command', command: 'toggle-protect' });
+  expect(document.documentElement.getAttribute('data-focusmask-privacy')).toBe('on');
+  await message({ type: 'command', command: 'toggle-protect', source: 'shortcut' });
+  expect(document.documentElement.getAttribute('data-focusmask-privacy')).toBe('off');
+  await message({ type: 'command', command: 'toggle-protect', source: 'shortcut' });
+  // Browser commands can consume key events, so another command must toggle without a page keyup.
+  expect(document.documentElement.getAttribute('data-focusmask-privacy')).toBe('on');
+  await message({ type: 'command', command: 'toggle-protect', source: 'shortcut' });
+  expect(document.documentElement.getAttribute('data-focusmask-privacy')).toBe('off');
+  globalEnabled = false;
+  await message({ type: 'refresh-config' });
+  expect(document.documentElement.getAttribute('data-focusmask-privacy')).toBe('off');
+  vi.unstubAllGlobals();
+});

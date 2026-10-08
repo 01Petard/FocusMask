@@ -1,0 +1,52 @@
+{
+  "version": "0.1.2",
+  "browser": "153.0.8010.12",
+  "results": [
+    "unconfigured webpage remains unchanged",
+    "pregranted local fixture and default-off configuration (native prompt excluded)",
+    "page uses Gaussian backdrop blur without hiding the original body",
+    "new native dialog cannot escape protection; source dialog remains open after unlock",
+    "page unlock preserves media masks",
+    "temporary page reveal automatically restores blur after 1000ms",
+    "media click reveal keeps size and intercepts links, then automatically remasks",
+    "hover must last 250ms; reveal lasts 1000ms without looping under a stationary pointer",
+    "page hover reveal uses the chosen trigger and reblurs automatically",
+    "quick toggle stays disabled across SPA, timer and tab switch; another port stays unchanged",
+    "picker cancellation restores unsaved preview",
+    "picker saves selector and reapplication survives refresh",
+    "settings rule disable, enable and delete restore page immediately",
+    "incremental media handling covers dynamic content",
+    "reused media nodes remask changed resources",
+    "global pause clears effects; resume reapplies persistent protection",
+    "500 media nodes and continued appends work; enabled/paused scrolling samples recorded",
+    "privacy UI works under restrictive source-page CSP",
+    "one-time protection toggles both ways without modifying saved site state",
+    "settings and popup render without horizontal overflow",
+    "browser restart preserves rules and restores privacy/media protection",
+    "custom dropdown keeps both choices; timings survive reload; author link is present",
+    "custom reveal duration controls the actual page timer and button labels have no durations",
+    "language choice persists and switches options, popup and injected controls without changing website language",
+    "unsupported-page popup has a clear empty state and language switching restores browser default",
+    "delete site restores document (required fixture permission is not revocable)"
+  ],
+  "performanceSamples": {
+    "enabled": {
+      "frames": 30,
+      "meanFrameMs": 16.46000000476837,
+      "maxFrameMs": 16.80000000000001,
+      "interactionMs": 17.600000143051147,
+      "scrolledTo": 2700,
+      "longTasksMs": []
+    },
+    "paused": {
+      "frames": 30,
+      "meanFrameMs": 16.353333334922795,
+      "maxFrameMs": 16.700000000000045,
+      "interactionMs": 15.700000047683716,
+      "scrolledTo": 2700,
+      "longTasksMs": []
+    }
+  },
+  "nativePermissionPrompt": false,
+  "pregrantedFixture": true
+}

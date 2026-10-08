@@ -1,0 +1,9 @@
+{
+  "version": "0.1.1",
+  "browser": "Microsoft Edge 154.0.4258.62 on macOS",
+  "nativeKeys": "Command+Shift+Y",
+  "scope": "Unconfigured disposable local HTTP page, activeTab from native command; existing production manifest with optional host permissions",
+  "verified": "First keypress protected page; second keypress restored original page. Verified via native accessibility state.",
+  "thirdKeypress": "Not asserted; interrupted by foreground app changes.",
+  "extensionReload": "Existing unpacked FocusMask reloaded to 0.1.1 through Edge extension manager."
+}
