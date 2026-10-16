@@ -1,10 +1,38 @@
-# FocusMask
+<div align="center">
+  <img src="public/icons/128.png" width="80" height="80" alt="FocusMask 标志">
+  <h1>FocusMask</h1>
+  <p><strong>把干扰藏起来，把注意力留给自己。</strong></p>
+  <p>Chrome / Edge 网页视觉控制扩展。隐藏元素、模糊媒体、临时遮住整页，配置与规则只保存在本地。</p>
+  <p>
+    <img src="https://img.shields.io/badge/version-0.1.2-7c3aed" alt="版本 0.1.2">
+    <img src="https://img.shields.io/badge/Vue-3-42b883" alt="Vue 3">
+    <img src="https://img.shields.io/badge/Manifest-V3-4285f4" alt="Manifest V3">
+    <img src="https://img.shields.io/badge/data-local_only-0ea5e9" alt="数据仅本地保存">
+  </p>
+  <p>
+    <a href="#你可以用它做什么">功能</a> ·
+    <a href="#安装与更新">安装</a> ·
+    <a href="#从当前网页开始">开始使用</a> ·
+    <a href="#临时查看与快速开关">快捷操作</a>
+  </p>
+  <p><strong>简体中文</strong> · <a href="README.en.md">English</a></p>
+</div>
 
-**简体中文** · [English](README.en.md)
+## 你可以用它做什么
 
-让每个网页由你掌控。FocusMask 是一个 Chrome / Edge 扩展，可隐藏干扰元素、模糊图片与视频、模糊整页。配置和规则只保存在本地。
+- **收起不想看的元素**：选择网页上的干扰区域，预览后保存隐藏规则，刷新后继续生效。
+- **先模糊，再决定要不要看**：图片与 HTML5 视频保留原有位置，点击或悬停临时查看。
+- **快速保护当前页面**：使用整页模糊与快捷键，在需要时临时遮住内容。
+- **每个网站分别管理**：按站点授权与启用，保留独立模式和规则，也可全局暂停。
 
-当前版本：**0.1.2**。扩展界面提供简体中文和英语；默认跟随浏览器语言，简中、繁中均使用简体中文，其他语言使用英语。小窗和设置页都可手动切换。
+| 使用重点 | 行为 |
+| --- | --- |
+| 主动授权 | 从当前站点开始，不默认开启全部网站 |
+| 可恢复 | 隐藏元素不删除 DOM，关闭对应功能即可恢复 |
+| 本地保存 | 网站配置、规则和语言偏好保存在浏览器本地 |
+| 中英文界面 | 跟随浏览器，也可在小窗和设置页手动切换 |
+
+当前版本 **0.1.2**。浏览器语言为简中或繁中时默认使用简体中文，其他语言使用英语。
 
 ## 安装与更新
 
@@ -108,3 +136,13 @@ pnpm run test:browser
 - 不隐藏地址栏、标签标题、浏览历史、网络流量或系统预览。
 
 [隐私声明](doc/PRIVACY.md) · [产品行为](doc/PRODUCT.md) · [界面约定](doc/DESIGN.md) · [作者 GitHub](https://github.com/01Petard)
+
+## 常见问题与反馈
+
+**更新后行为没有变化？** 先在扩展管理页重新加载扩展，再刷新原网页；只刷新设置页不会更新后台和已注入脚本。
+
+**关闭整页模糊后为什么图片仍模糊？** 整页模糊、媒体模糊和元素过滤分别控制。临时查看整页也不会关闭其他模式。
+
+**这能当成隐私锁吗？** 模糊是视觉效果，不是访问控制；原始内容和网络请求仍然存在，具体边界见上方“范围与限制”。
+
+欢迎通过 [Issues](https://github.com/01Petard/FocusMask/issues) 反馈，提供浏览器版本、可公开的网址与复现步骤。当前仓库未提供 `LICENSE` 文件。
